@@ -1,5 +1,7 @@
 package com.example.jorgedoria.webfluxcourse.controller;
 
+import com.example.jorgedoria.webfluxcourse.model.request.UserRequest;
+import com.example.jorgedoria.webfluxcourse.model.response.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;

@@ -1,6 +1,7 @@
 package com.example.jorgedoria.webfluxcourse.controller.impl;
 
 import com.example.jorgedoria.webfluxcourse.controller.UserController;
+import com.example.jorgedoria.webfluxcourse.mapper.UserMapper;
 import com.example.jorgedoria.webfluxcourse.model.request.UserRequest;
 import com.example.jorgedoria.webfluxcourse.model.response.UserResponse;
 import com.example.jorgedoria.webfluxcourse.service.UserService;
@@ -18,6 +19,7 @@ import reactor.core.publisher.Mono;
 public class UserControllerImpl implements UserController {
 
     private final UserService userService;
+    private final UserMapper mapper;
 
     @Override
     public ResponseEntity<Mono<Void>> save(final UserRequest request) {
@@ -26,8 +28,10 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<Mono<UserResponse>> find(String id) {
-        return null;
+    public ResponseEntity<Mono<UserResponse>> findById(String id) {
+        return ResponseEntity.ok().body(
+                userService.findById(id).map(mapper::toResponse)
+        );
     }
 
     @Override

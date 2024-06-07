@@ -7,7 +7,7 @@ public class TrimStringValidator implements ConstraintValidator<TrimString, Stri
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
-        // Se o valo é nulo OU se o tamanho da string sem espaços é igual ao tamanho original
+        // Se o valor é nulo OU se o tamanho da string sem espaços é igual ao tamanho original
         return value == null || value.trim().length() == value.length();
     }
 }

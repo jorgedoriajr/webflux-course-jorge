@@ -10,6 +10,9 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class UserRepository {
 
+    /*
+        Não se utilizar o Extends como no JPA como no Spring Data.
+     */
     private final ReactiveMongoTemplate mongoTemplate;
 
     public Mono<User> save(final User user) {

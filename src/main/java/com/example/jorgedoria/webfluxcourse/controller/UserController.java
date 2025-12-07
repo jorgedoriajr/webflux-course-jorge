@@ -13,9 +13,15 @@ public interface UserController {
     @PostMapping
     ResponseEntity<Mono<Void>> save(@Valid @RequestBody UserRequest request);
 
+    /*
+        Mono (quando queremos apenas um usuário ou nenhum usuário como resultado)
+     */
     @GetMapping(value = "/{id}")
     ResponseEntity<Mono<UserResponse>> findById(@PathVariable String id);
 
+    /*
+        Flux (quando queremos vários usuários ou nenhum usuário como resultado por vez)
+     */
     @GetMapping
     ResponseEntity<Flux<UserResponse>> findAll();
 

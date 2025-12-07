@@ -24,7 +24,7 @@ public class UserControllerImpl implements UserController {
     @Override
     public ResponseEntity<Mono<Void>> save(final UserRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(userService.save(request).then());
+                .body(userService.save(request).then()); // o método then() retorna um Mono<Void>
     }
 
     @Override

@@ -18,10 +18,18 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper mapper;
 
+    /*
+        Adicionei o "final" para que os atributos não possam ser modificados ou gerando inconsistência por outros métodos
+        que possam utilizá-los
+     */
     public Mono<User> save(final UserRequest request) {
         return userRepository.save(mapper.toEntity((request)));
     }
 
+    /*
+        Adicionei o "final" para que os atributos não possam ser modificados ou gerando inconsistência por outros métodos
+        que possam utilizá-los
+     */
     public Mono<User> findById(final String id) {
         return userRepository.findById(id)
                 .switchIfEmpty(Mono.error(

@@ -10,10 +10,13 @@ import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
 import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
 
 @Mapper(componentModel = "spring",
-        nullValuePropertyMappingStrategy = IGNORE,
-        nullValueCheckStrategy = ALWAYS)
+        nullValuePropertyMappingStrategy = IGNORE, //Quando o valor das propriedades forem nulas, ignorar
+        nullValueCheckStrategy = ALWAYS) //Sempre chevar valore Nulos
 public interface UserMapper {
 
+    /*
+        A Anotação @Mapping ignora o mapeamento do ID para inclusão, pois o mongoDB gera o ID automaticamente.
+     */
     @Mapping(target = "id", ignore = true)
     User toEntity(final UserRequest request);
 

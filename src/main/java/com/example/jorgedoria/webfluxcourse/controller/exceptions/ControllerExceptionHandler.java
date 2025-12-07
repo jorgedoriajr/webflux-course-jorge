@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
+/*
+    Manipulador de exceções para tratamento de erros na camada de controller
+ */
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
@@ -25,7 +28,7 @@ public class ControllerExceptionHandler {
                 .body(Mono.just(
                         StandardError.builder()
                                 .timestamp(LocalDateTime.now())
-                                .path(request.getURI().getPath())
+                                .path(request.getPath().toString())
                                 .status(BAD_REQUEST.value())
                                 .error(BAD_REQUEST.getReasonPhrase())
                                 .message(verifyDupKey(ex.getMessage()))
@@ -65,7 +68,7 @@ public class ControllerExceptionHandler {
                 .body(Mono.just(
                         StandardError.builder()
                                 .timestamp(LocalDateTime.now())
-                                .path(request.getURI().getPath())
+                                .path(request.getPath().toString())
                                 .status(NOT_FOUND.value())
                                 .error(NOT_FOUND.getReasonPhrase())
                                 .message(ex.getMessage())
